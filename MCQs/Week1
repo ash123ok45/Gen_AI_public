@@ -1,0 +1,229 @@
+Q1. Scenario: Your product manager proposes replacing a rule‑based chatbot with a small language model fine‑tuned on company FAQs. According to the definition of AI, which capability justifies classifying the new model as AI rather than conventional automation?
+    a) Deterministic execution of scripted rules
+    b) Ability to learn patterns from data and improve responses
+    c) Manual tagging of every possible user intent
+    d) Static mapping of questions to canned answers
+Correct Answer: b
+Explanation: AI systems are characterised by their ability to learn from data and improve over time; deterministic rule execution does not qualify.
+
+Q2. Scenario: A startup wants to implement AI to automate customer service but has limited technical expertise and budget constraints. The CEO is considering whether to hire Python developers or use no-code solutions. Based on the code vs no-code concept, what would be the most practical initial approach?
+
+A) Hire a team of Python developers immediately to build custom AI solutions
+B) Start with no-code AI platforms to validate use cases, then scale with code-based solutions
+C) Avoid AI implementation until sufficient technical expertise is available
+D) Outsource the entire AI development to external agencies
+
+Correct Answer: b
+Explanation: The code vs no-code concept suggests that organisations should start with no-code solutions to quickly validate AI use cases and demonstrate value, then gradually transition to code-based solutions as requirements become more complex and technical expertise grows.
+
+Q3. A data science team is evaluating why their previous AI projects succeeded while others failed. Which factors typically contribute to AI implementation success? (Select all that apply)
+(Choose Two)
+A) Clear business objectives and measurable outcomes
+B) Adequate data quality and availability
+C) Using the most advanced AI algorithms available
+D) Having unlimited budget and resources
+
+Correct Answers: A, B
+Explanation: AI success depends on clear objectives, quality data, and organisational support. Advanced algorithms and unlimited resources don't guarantee success without proper foundation and management.
+
+Q4. 
+You are tasked with designing a customer service chatbot for a tech company. The chatbot must handle complex queries, learn from user interactions, and adapt its responses over time. Which of the following best describes the core characteristic of Artificial Intelligence (AI) in this context?
+
+A) A system that follows a fixed sequence of actions to respond to user inputs, relying on pre-defined rules and logic.
+B) A system that uses patterns in user data to refine its responses and improve performance without explicit programming for every scenario.
+C) A tool that executes tasks in a repetitive manner, producing the same output for identical inputs.
+D) A mechanism that collects and arranges user interactions for future reference, without altering its behavior based on new information.
+
+Correct Answer : B
+Explanation : B is the correct answer because Artificial Intelligence (AI) involves systems that analyze patterns in data , learn from experience , and adapt their behavior over time. In this scenario, the chatbot’s ability to "learn from user interactions" and "refine responses" aligns with AI’s core characteristic of autonomous learning and dynamic decision-making .
+
+
+Q5. What is the output of this code?
+data = {"name": "Alice", "age": 30, "scores": [85, 92]}
+print(type(data["scores"]))
+A) <class 'list'>
+B) <class 'dict'>
+C) <class 'int'>
+D) <class 'str'>
+Correct Answer: A
+ Explanation: data["scores"] accesses a list value, reinforcing Python data types (list, dict).
+ 
+Q6. def ai_model_config():
+    config = {
+        'model_type': 'neural_network',
+        'layers': [64, 32, 16],
+        'activation': 'relu'
+    }
+    
+    try:
+        with open('model_config.json', 'w') as file:
+            import json
+            json.dump(config, file)
+        return True
+    except Exception as e:
+        print(f"Error: {e}")
+        return False
+```
+
+Which Python concepts are demonstrated in this code? (Select all that apply)
+
+A) Dictionary data type
+B) File handling
+C) Error handling
+D) Function definition
+
+
+Correct Answers: A, B, C, D
+Explanation: The code demonstrates dictionary usage (config), file handling (writing to file), error handling (try-except), function definition, and list data type (layers).
+
+Q7.Scenario: You are mentoring a junior who wrote:
+        for i in range(3): 
+            print(i) 
+        else: 
+            print("Done")
+Why does the else execute?
+    a) The else runs only if a break occurs
+    b) The else is part of Python’s loop‑else construct and executes when the loop finishes without a break
+    c) The code is invalid; else cannot follow for
+    d) The else belongs to an unseen if
+Correct Answer: b
+Explanation: In Python, a for‑else executes the else block when the loop completes naturally (no break), which happens here.
+
+Q8. Code: What will be printed?
+    prices = [100, 250, 90]
+    def discount(lst):
+        return [p*0.9 for p in lst if p>100]
+    print(discount(prices))
+    a) [90.0, 225.0]
+    b) [225.0]
+    c) [90, 225]
+    d) SyntaxError
+Correct Answer: a
+Explanation: The list comprehension filters values >100 (250) and multiplies by 0.9, yielding [225.0]; 100 and 90 are excluded.
+
+Q9. Scenario: An insurance firm wants to automate downloading 1,000 claim PDFs nightly from its web portal. Which Python RPA framework offers image‑based mouse control suited to legacy GUI apps that lack HTML IDs?
+    a) Selenium
+    b) Playwright
+    c) PyAutoGUI
+    d) Requests
+Correct Answer: c
+Explanation: PyAutoGUI controls the mouse/keyboard by matching on‑screen images, ideal for non‑HTML or legacy GUIs.
+
+Q10. 
+A company wants to reduce manual effort in processing orders. Which task can RPA automate effectively?
+
+a) Extracting order details from emails and updating a database
+b) Designing a new product using AI
+c) Writing a complex machine learning algorithm
+d) Conducting a physical inventory check
+
+Correct Answer: a) Extracting order details from emails and updating a database
+Explanation: RPA excels at structured, repetitive tasks like data extraction and entry, widely applied in industries globally.
+
+Q11. A retail company wants to automate their inventory management by extracting data from multiple supplier websites daily. The websites have different structures and anti-bot measures. Which approach would be most effective?
+
+A) Use PyAutoGUI to simulate mouse clicks and keyboard input
+B) Implement Playwright with rotating proxies and human-like delays
+C) Use Selenium with basic web scraping techniques
+D) Develop custom API integrations with each supplier
+
+Correct Answer: B
+Explanation: Playwright offers better handling of modern web applications, supports headless browsing, and combined with anti-detection measures like rotating proxies and human-like delays, provides the most robust solution for diverse websites.
+
+Q12.
+You are automating a process involving web browsing and desktop actions. Which Python frameworks are suitable?
+
+a) PyAutoGUI
+b) Selenium
+c) Playwright
+d) Flask
+
+Correct Answers: a) PyAutoGUI, b) Selenium, c) Playwright
+Explanation: PyAutoGUI automates desktop actions (mouse/keyboard), while Selenium and Playwright handle web automation. Flask is for web development, not RPA.
+
+
+Q13. A machine learning team needs to deploy their trained model for real-time predictions. The model should be accessible by mobile apps, web applications, and other services. What architectural approach using Flask would be most appropriate?
+
+A) Create a single Flask endpoint that returns HTML pages with predictions
+B) Develop a RESTful API with JSON responses for different prediction endpoints
+C) Build a Flask application with direct database integration for each request
+D) Use Flask only for data preprocessing and delegate predictions to external services
+
+Correct Answer: B
+Explanation: RESTful APIs with JSON responses provide the most flexible and standardised way to serve ML models, allowing different types of clients (mobile, web, services) to easily integrate and consume the predictions.
+
+
+Q14.
+A company is designing an API architecture for their AI services. Which principles should they follow for effective REST API design? (Select all that apply)
+
+A) Use appropriate HTTP methods (GET, POST, PUT, DELETE)
+B) Implement proper error handling with meaningful status codes
+C) Include version information in API endpoints
+D) Use clear and consistent naming conventions for endpoints
+
+Correct Answers: A, B, C,D
+Explanation: Good REST API design includes proper HTTP methods, error handling, versioning, and consistent naming. JSON is preferred over XML for modern APIs due to its lightweight nature and better JavaScript integration.
+
+
+Q15.
+When building a REST API with Flask, which practices are recommended? (Choose two)
+A) Use JSON for request/response bodies
+B) Hardcode database credentials in routes
+C) Validate user input
+D) Skip error handling for simplicity
+Answers: A, C
+Explanation: JSON standardization and input validation are best practices. Hardcoding credentials is insecure.
+
+Q16. 
+An AI startup is building an API that will handle sensitive customer data for personalized recommendations. The API receives 1000+ requests per minute during peak hours. What is the most critical consideration for their Flask API implementation?
+
+A) Using the latest Python version for optimal performance
+B) Implementing authentication, rate limiting, and data encryption
+C) Adding comprehensive logging for all API requests
+D) Using the most advanced ML algorithms for recommendations
+
+Correct Answer: B
+Explanation: For production APIs handling sensitive data and high traffic, security (authentication, encryption) and stability (rate limiting) are paramount. These prevent data breaches and ensure service availability.
+
+Q17.
+A developer is creating a Streamlit TTS application where users can input text, select voice parameters, and generate audio files. The application needs to handle multiple users simultaneously and maintain responsive performance. Which Streamlit architecture consideration is most important?
+
+A) Using the maximum number of Streamlit components for rich functionality
+B) Implementing proper session state management and component optimization
+C) Designing the most visually appealing user interface
+D) Including every possible TTS configuration option
+
+Correct Answer: B
+Explanation:For multi-user Streamlit applications, proper session state management ensures user data isolation, while component optimization maintains performance and responsiveness across concurrent users.
+
+
+Q18. 
+What is the primary advantage of using Streamlit for TTS application development compared to traditional web frameworks?
+
+A) Superior audio processing capabilities
+B) Better text-to-speech algorithm implementation
+C) Rapid prototyping with minimal web development expertise required
+D) Enhanced security features for audio data
+
+Correct Answer: C
+Explanation: Streamlit's main advantage is enabling rapid development of interactive web applications without extensive frontend knowledge, making it ideal for data scientists and Python developers to quickly build and deploy TTS applications.
+
+Q19.
+A team is developing a comprehensive TTS application using Streamlit that will include text input, voice selection, audio playback, and download functionality. Which Streamlit components would be most appropriate for this application? (Choose three)
+
+A) st.text_area() for text input
+B) st.selectbox() for voice selection
+C) st.audio() for audio playback
+D) st.camera_input() for voice recording
+
+Correct Answers: A, B, C
+Explanation: The TTS application requires text input (text_area), voice selection (selectbox), audio playback (audio), and download functionality (download_button). Camera input is not relevant for text-to-speech applications.
+
+Q20.
+In a Streamlit TTS app, gTTS (Google Text-to-Speech) is used to:
+A) Convert user text input into downloadable audio
+B) Transcribe audio to text
+C) Translate text between languages
+D) Generate speech recognition models
+Answer: A
+Explanation: gTTS synthesizes audio from text, enabling TTS functionality.
