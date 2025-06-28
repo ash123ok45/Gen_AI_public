@@ -1,0 +1,217 @@
+Q1. A developer wants to build an application that connects LLMs with external databases. Which framework provides pre-built modules for this purpose?  
+a) TensorFlow  
+b) LangChain  
+c) PyTorch  
+d) Scikit-learn  
+Correct Answer: b  
+Explanation: LangChain simplifies integrating LLMs with external data sources and APIs through its modular components. 
+
+Q2. Your team needs to choose between different frameworks for an AI application that will involve document processing, question-answering, and integration with multiple LLMs. Which aspect of the LangChain ecosystem would be most relevant for making this decision?
+
+a) The number of programming languages it supports
+b) Its comprehensive toolkit covering data ingestion, processing, and model orchestration
+c) Its ability to replace all other AI development tools
+d) Its exclusive compatibility with OpenAI models
+
+Correct Answer: b
+Explanation: LangChain's ecosystem strength lies in its comprehensive coverage of the entire LLM application pipeline, from data ingestion to model orchestration, making it suitable for complex multi-component AI applications.
+
+
+Q3. Which LangChain component helps manage prompts dynamically during application runtime?  
+a) Data Ingestion   
+b) Vector Stores  
+c) Text Splitters 
+d) Prompt Templates 
+Correct Answer: d
+Explanation: Prompt Templates allow developers to define reusable input structures, enabling dynamic prompt generation.  
+
+
+Q4. Which code snippet initializes a LangChain text splitter?  
+a) from langchain.text_splitter import RecursiveCharacterTextSplitter  
+b) import langchain.TextSplitter  
+c) from langchain.split import TextProcessor  
+d) langchain.split_text()  
+Correct Answer: a  
+Explanation: RecursiveCharacterTextSplitter is a common LangChain utility for splitting text into chunks.
+
+Q5.A team wants to convert customer support transcripts into numerical representations for similarity searches. Which component would they use?  
+a) Vector Store  
+b) Embeddings  
+c) Retrieval  
+d) Prompt Templates  
+Correct Answer: b  
+Explanation: Embeddings transform text into numerical vectors, enabling semantic similarity comparisons.  
+
+Q6. Which storage system is optimized for fast similarity searches of text embeddings?  
+a) Relational databases  
+b) Vector Stores  
+c) Spreadsheets  
+d) File systems  
+Correct Answer: b  
+Explanation: Vector Stores (e.g., Pinecone, FAISS) are designed to efficiently retrieve high-dimensional vectors. 
+
+Q7. What are the main categories of components in LangChain?
+
+a) Models, Prompts, and APIs only
+b) Data loaders, Models, Memory, Chains, and Agents
+c) Input, Processing, and Output components
+d) Frontend, Backend, and Database components
+
+Correct Answer: b
+Explanation: LangChain organises its functionality into key components: Data loaders (for ingestion), Models (LLM interfaces), Memory (conversation state), Chains (component sequences), and Agents (autonomous decision-making).
+
+Q8. A legal firm wants to build an AI system that can process contracts, case files, and legal documents from various sources including PDFs, Word documents, and web pages. Which LangChain capability would be most critical for handling this diverse data landscape?
+
+a) Advanced prompt engineering templates
+b) Multiple data ingestion connectors and loaders
+c) Built-in legal document templates
+d) Automatic language translation features
+
+Correct Answer: b
+Explanation: Data ingestion in LangChain provides connectors and loaders for various data sources and formats, which is essential for handling diverse document types from different sources in a legal context.
+
+Q9. A developer is implementing text splitting for a document processing pipeline. Which approach would be most appropriate for maintaining context continuity?
+
+```python
+# Option A
+def split_text_simple(text, chunk_size=1000):
+    return [text[i:i+chunk_size] for i in range(0, len(text), chunk_size)]
+
+# Option B  
+def split_text_semantic(text, chunk_size=1000, overlap=200):
+    chunks = []
+    for i in range(0, len(text), chunk_size-overlap):
+        chunk = text[i:i+chunk_size]
+        chunks.append(chunk)
+    return chunks
+```
+
+a) Option A because it's simpler to implement
+b) Option B because it maintains context with overlapping chunks
+c) Both options are equally effective
+d) Neither option is suitable for LangChain
+
+Correct Answer: b
+Explanation: Option B maintains context continuity through overlapping chunks, ensuring that important information spanning chunk boundaries isn't lost, which is crucial for semantic understanding in RAG systems.
+
+Q10. An e-commerce company is building a product search system that needs to handle queries like "comfortable running shoes for flat feet" and find relevant products even when exact keywords don't match. Which embedding approach would be most effective?
+
+a) Simple keyword matching with exact string comparison
+b) Random numerical assignment to each product
+c) Semantic embeddings that understand context and relationships
+d) Alphabetical sorting of product descriptions
+
+Correct Answer: c
+Explanation: Semantic embeddings capture contextual meaning and relationships between concepts, allowing the system to find relevant products based on intent and meaning rather than exact keyword matches.
+
+Q11. A company’s chatbot generates irrelevant answers due to outdated training data. Which approach would solve this?  
+a) Increase model parameters  
+b) Use RAG to fetch real-time data  
+c) Switch to a closed-source LLM  
+d) Add more training epochs  
+Correct Answer: b  
+Explanation: RAG (Retrieval-Augmented Generation) combines LLMs with external data retrieval for up-to-date responses.
+
+Q12. A research assistant application needs to find the most relevant documents from a large database when users ask questions. The system should return the top 5 most similar documents based on the query. What is the primary purpose of the retrieval component in this RAG system?
+
+a) To generate new content based on user queries
+b) To identify and return the most relevant documents for a given query
+c) To store user queries for future analysis
+d) To automatically improve document quality
+
+Correct Answer: b
+Explanation: Retrieval in RAG systems focuses on finding and ranking the most relevant documents from the knowledge base based on similarity to the user's query, forming the foundation for informed response generation.
+  
+
+Q13.  Which RAG type combines multiple data sources for comprehensive answers?  
+a) Fusion RAG  
+b) Self RAG  
+c) Speculative RAG  
+d) Corrective RAG  
+Correct Answer: a  
+Explanation: Fusion RAG aggregates information from diverse sources to enhance response quality.  
+
+Q14. A legal document analysis system sometimes retrieves irrelevant documents due to keyword confusion or ambiguous queries. The team wants to implement a system that can detect when retrieved information is not suitable and find better alternatives. Which RAG variant addresses this specific challenge?
+
+a) Basic RAG without modifications
+b) Corrective RAG that can identify and fix retrieval errors
+c) Fusion RAG for combining multiple sources
+d) Speculative RAG for faster processing
+
+Correct Answer: b
+Explanation: Corrective RAG specifically addresses the problem of irrelevant or incorrect retrievals by implementing mechanisms to detect retrieval errors and apply corrective measures to find more appropriate information.
+
+
+Q15. A real-time news analysis system needs to process queries and generate responses quickly while maintaining accuracy. The system cannot afford to wait for multiple retrieval-generation cycles. Which RAG approach would be most suitable for this latency-sensitive application?
+
+a) Self RAG with multiple evaluation rounds
+b) Corrective RAG with error detection cycles
+c) Speculative RAG that predicts and pre-generates responses
+d) Basic RAG with maximum retrieval depth
+
+Correct Answer: c
+Explanation: Speculative RAG is designed for low-latency scenarios by predicting likely queries and pre-generating or preparing responses, reducing the time needed for retrieval and generation during actual query processing.
+  
+
+Q16. A RAG system's retrieval component can be optimised through various techniques. Which of the following are valid retrieval optimisation strategies? (Select all that apply)
+
+a) Adjusting the number of retrieved documents (top-k)
+b) Using different similarity metrics (cosine, euclidean, etc.)
+c) Implementing re-ranking algorithms
+d) Using hybrid search combining dense and sparse retrieval
+
+Correct Answers: a, b, c, d
+Explanation: Valid optimisation strategies include tuning retrieval parameters (top-k), experimenting with similarity metrics, implementing re-ranking for better relevance, and using hybrid approaches. Storing only first paragraphs would lose important information.
+
+ Q17. A developer is implementing a Fusion RAG system that needs to combine results from multiple retrieval sources. Which approach best represents the fusion concept?
+
+```python
+# Option A
+def simple_rag(query):
+    docs = vector_store.similarity_search(query, k=5)
+    return generate_response(query, docs)
+
+# Option B
+def fusion_rag(query):
+    vector_docs = vector_store.similarity_search(query, k=3)
+    keyword_docs = keyword_search(query, k=3)
+    graph_docs = knowledge_graph.search(query, k=2)
+    
+    combined_docs = merge_and_rank([vector_docs, keyword_docs, graph_docs])
+    return generate_response(query, combined_docs)
+```
+
+a) Option A because it's simpler and more efficient
+b) Option B because it combines multiple retrieval methods for better coverage
+c) Both options implement Fusion RAG equally well
+d) Neither option correctly implements RAG
+
+Correct Answer: b
+Explanation: Option B demonstrates Fusion RAG by combining multiple retrieval approaches (vector, keyword, knowledge graph) and merging results, providing more comprehensive and robust information retrieval than single-method approaches.
+
+Q18. A team wants to reduce hallucinations in their RAG system. What should they prioritize?  
+a) Increasing model size  
+b) Adding a corrective feedback loop  
+c) Using faster GPUs  
+d) Switching to a closed LLM  
+Correct Answer: b  
+Explanation: Corrective RAG uses feedback mechanisms to identify and correct inaccuracies.  
+
+Q19.Which are essential components of RAG? (Select all that apply)
+a) Vector database
+b) Text splitter
+c) Embedding model
+d) Reinforcement learning
+Correct Answer: a, b, c
+Explanation: RAG requires chunking → embedding → retrieval → generation; RL is optional.
+
+Q20. When implementing a production RAG system, which components require careful consideration for optimal performance? (Select all that apply)
+
+a) Embedding model selection and consistency
+b) Vector store indexing, Chunk size and overlap strategies and search parameters
+d) Only the language model choice
+e) Retrieval ranking and filtering mechanisms
+
+Correct Answers: a, b,  d
+Explanation: Production RAG systems require optimization across multiple components: embedding consistency, vector store configuration, text chunking strategies, and retrieval mechanisms. Focusing only on the language model while ignoring other components would result in suboptimal performance.
+
