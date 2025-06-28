@@ -1,0 +1,160 @@
+Q1.  You are designing a prompt for a RAG system to answer customer queries using company documents. What is the main purpose of the Corrective RAG Template? 
+a) To store documents in a database 
+b) To validate and refine retrieved information 
+c) To generate random responses 
+d) To design a user interface 
+Correct Answer: b 
+
+Explanation: The Corrective RAG Template validates and refines retrieved data to ensure accurate and relevant responses, improving the reliability of a RAG system for customer queries.
+
+Q2. What problem does a Corrective RAG template primarily try to solve in production assistants?
+    a) High GPU costs
+    b) Slow token streaming
+    c) Hallucinations caused by unsupported claims
+    d) Lack of user interface themes
+Correct Answer: c
+Explanation: Corrective RAG focuses on catching and fixing hallucinations by grounding answers in verified context.
+
+Q3. A developer needs to integrate voice capabilities into a RAG Voice Assistant. Which tool is essential?  
+a) Speechtotext model  
+b) Vector Store  
+c) Fallback Mechanism  
+d) Web Search  
+Correct Answer: a  
+Explanation: SpeechRecognition converts audio input into text for processing
+
+Q4. Your RAG chatbot fails to find relevant data for a user query. What does the Fallback Mechanism do in this situation? 
+a) It restarts the chatbot
+b) It provides a default or alternative response
+c) It trains a new model 
+d) It deletes the query 
+Correct Answer: b 
+Explanation: The Fallback Mechanism in RAG provides a default or alternative response when relevant data is not found, ensuring the system remains functional and user-friendly.
+
+Q5. Your team needs to enhance a RAG system by including recent online data. What is the role of Web Search in this context?
+a) To fetch up-to-date information from the internet
+b) To store data locally 
+c) To train the language model 
+d) To create a web interface
+ Correct Answer: a 
+Explanation: Web Search in RAG systems retrieves current information from the internet to supplement internal data, ensuring responses are relevant and up-to-date.
+
+Q6. (Select two): Your travel‑booking bot uses a **fallback mechanism**. In which two situations should the bot automatically call a fallback model?  
+    a) The retriever returns an empty list  
+    b) The primary LLM API returns HTTP 429 (rate limit)  
+    c) The user says “thank you”  
+    d) The vector dimension is 1 536  
+Correct Answer: a, b  
+Explanation: Empty retrieval means no knowledge; rate limiting means the main model is temporarily unavailable—both justify falling back.
+
+Q7. A developer chains GPT‑4(strong model) → GPT‑3.5 → Rule‑based FAQ in descending order of capability until one responds successfully. What design pattern is this?
+    a) Round‑robin sampling
+    b) Cascading fallback
+    c) Self‑RAG loop
+    d) Prompt chaining
+Correct Answer: b
+Explanation: A cascade tries stronger options first and falls back to simpler ones.
+
+Q8. Your compliance bot answers queries about RBI circulars. When should it most likely call **web search** inside RAG?
+    a) When the circular reference date is newer than the model’s knowledge cut‑off  
+    b) When the user’s language is Hindi  
+    c) When embeddings length exceed 1 024  
+    d) On every single user query by default  
+Correct Answer: a  
+Explanation: Web search is ideal for post‑cut‑off or very recent information.
+
+Q9. (Select two): In **Adaptive RAG**, which two signals are commonly used to decide whether to fetch *more* documents?  
+    a) The length of the user query in tokens  
+    b) The similarity score of the top‑1 document  
+    c) The current server’s CPU temperature  
+    d) The day of the week  
+Correct Answer: a, b  
+Explanation: Longer queries or low similarity confidence often trigger a wider retrieval.
+
+Q10. You’re building a **RAG Chat Assistant** for an internal IT help‑desk. To store embeddings on a single machine with fast similarity search, you choose  
+    a) CSV files  
+    b) FAISS index  
+    c) MongoDB without vectors  
+    d) Google Sheets  
+Correct Answer: b  
+Explanation: FAISS provides efficient in‑memory vector search ideal for prototyping.
+
+Q11. What is the primary goal of a RAG Voice Assistant? 
+a) To edit audio files 
+b) To answer spoken queries using external data 
+c) To store voice recordings 
+d) To design a user interface 
+Correct Answer: b 
+Explanation: A RAG Voice Assistant uses Retrieval-Augmented Generation to answer spoken queries by retrieving relevant external data, enhancing response accuracy.
+
+Q12. (SELECT TWO) While designing a **RAG Voice Assistant**, which two components are mandatory apart from the LLM?  
+    a) Speech‑to‑Text engine (e.g., Whisper)  
+    b) TTS engine (e.g., Coqui‑TTS)  
+    c) Power‑point generator  
+    d) Image captioner  
+Correct Answer: a, b  
+Explanation: Voice assistants need STT to capture queries and TTS to speak responses.
+
+Q13.Which components are critical for Text Summarization in LangChain?  
+a) Text Splitter  
+b) Embeddings  
+c) Both a and b  
+d) None of the above  
+Correct Answer: c  
+Explanation: Text Splitters divide content, and Embeddings enable semantic analysis. 
+
+Q14. Which are benefits of using LangGraph in chatbots? (Select two)  
+a) State management  
+b) Workflow orchestration  
+c) Real-time translation  
+d) Built-in vector stores  
+Correct Answer: a, b  
+Explanation: LangGraph manages conversation states and workflows but lacks translation or vector stores by default.
+
+Q15. You are building a YouTube Video Summarizer using LangChain. What is a key step to process video content? 
+a) Transcribing video audio to text 
+b) Editing video visuals 
+c) Storing video files 
+d) Designing a website 
+Correct Answer: a 
+Explanation: A YouTube Video Summarizer uses LangChain to transcribe video audio into text, which is then summarized using retrieval and generation.
+
+Q16. An open‑source toolkit widely used for on‑device speech‑to‑text in voice assistants is ___.
+    a) Whisper  
+    b) Selenium  
+    c) Pandas  
+    d) Redux  
+Correct Answer: a  
+Explanation: OpenAI’s Whisper provides robust multilingual STT and is popular in the community.
+
+Q17. In your **Code Assistant** project, what prompt addition will most safely reduce hallucinated imports?  
+    a) Set temperature to 1.5  
+    b) Add “Only produce Python 3 code that runs without external libraries unless explicitly asked.”  
+    c) Increase max tokens to 4 000  
+    d) Remove system prompt altogether  
+Correct Answer: b  
+Explanation: Explicit constraints steer the model away from fictional packages.
+
+Q18. For a **Text Summarisation** tool, users can choose “bullet” or “paragraph” mode. What is the *simplest* prompt technique to support both?  
+    a) Two separate LLM calls with hard‑coded templates  
+    b) A single template with a `{style}` placeholder swapped at runtime  
+    c) Randomly alternate styles every run  
+    d) Ask users to manually edit the summary  
+Correct Answer: b  
+Explanation: Parameterised prompts keep code concise while offering style options.
+
+Q19. Your Chatbot using LangGraph needs to maintain conversation context. Which feature of LangGraph helps with this? 
+a) State management for conversations 
+b) Data storage in a database 
+c) User interface design 
+d) Hardware optimization 
+Correct Answer: a 
+Explanation: LangGraph’s state management feature tracks conversation context, enabling the chatbot to maintain coherent and relevant interactions.
+
+Q20. A Simple GenAI Application generates inconsistent responses. What should be added to enforce output structure?  
+a) Prompt Templates  
+b) Fallback Mechanism  
+c) Vector Store  
+d) Corrective RAG  
+Correct Answer: a  
+Explanation: Prompt Templates define the structure and constraints for LLM outputs. 
