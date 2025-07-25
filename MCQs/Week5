@@ -1,0 +1,237 @@
+Q1. Scenario: A small e-commerce business wants to automate order confirmation emails and inventory updates whenever a new sale occurs on their website. They are evaluating whether this qualifies as AI automation or just regular automation. According to the distinction between automation and AI automation, which factor determines if it's AI automation?
+
+a) The system runs without human intervention  
+b) The system uses machine learning or llm models to predict customer preferences and personalize emails  
+c) The system sends emails using a pre-defined template  
+d) The system logs data into a spreadsheet automatically  
+
+Correct Answer: b  
+Explanation: Regular automation follows fixed rules and workflows, while AI automation involves systems that can learn from data, adapt, and make intelligent decisions—such as personalizing content using learned patterns. Only when the system uses capabilities like prediction or adaptation through data does it qualify as AI automation.
+
+---
+
+Q2. Scenario: Your team is exploring tools to integrate AI-powered workflows without writing extensive code. A colleague suggests n8n. Why is n8n particularly suitable for AI workflow automation in a low-code environment?
+
+a) It only supports AI models hosted on AWS  
+b) It provides visual workflow design with pre-built nodes for AI services and APIs  
+c) It requires deep knowledge of Python to configure workflows  
+d) It is limited to email automation and cannot connect to AI models  
+
+Correct Answer: b  
+Explanation: n8n is a powerful open-source workflow automation tool that allows users to visually design integrations using nodes. Its support for API connections, AI services (like OpenAI), and no-code interface makes it ideal for building AI workflows without heavy coding.
+
+---
+
+Q3. Scenario: You are setting up an AI assistant that responds to customer queries by fetching answers from a knowledge base and improving responses over time based on feedback. Which type of automation best describes this system?
+
+a) Rule-based automation  
+b) Scheduled automation  
+c) AI automation  
+d) Manual automation  
+
+Correct Answer: c  
+Explanation: This system uses learning from feedback and adapts its responses, which is a hallmark of AI automation. Unlike rule-based systems, AI automation leverages data to improve performance dynamically.
+
+---
+
+Q4. You need to install n8n for a local development project. Which installation method allows you to run n8n directly on your machine without containers?
+
+a) Docker installation  
+b) Kubernetes deployment  
+c) Local installation using npm  
+d) Cloud-hosted n8n.io  
+
+Correct Answer: c  
+Explanation: Installing n8n via npm (Node Package Manager) allows you to run it locally on your machine without requiring Docker or cloud services, making it accessible for developers testing workflows on personal machines.
+
+---
+
+Q5. Scenario: You are building a workflow in n8n that should start whenever a user submits a form on your company’s website. Which type of node should you use to initiate this workflow?
+
+a) Action Node  
+b) HTTP Request Node  
+c) Trigger Node  
+d) Response Node  
+
+Correct Answer: c  
+Explanation: Trigger Nodes are used to start a workflow based on an event, such as receiving a webhook from a form submission. They sit at the beginning of a workflow and activate the sequence of actions.
+
+---
+
+Q6. Scenario: After processing a customer support ticket in n8n, you want to send a status update back to the originating application. Which node type is best suited for returning a response?
+
+a) Webhook Node  
+b) Trigger Node  
+c) Action Node  
+d) Response Node  
+
+Correct Answer: d  
+Explanation: The Response Node in n8n is specifically designed to send HTTP responses back to the source that triggered the workflow, such as confirming successful processing of a request.
+
+---
+
+Q7. Scenario: In an n8n workflow, you have a node that retrieves weather data from an API and another that sends a notification via email. What type of node is responsible for sending the email?
+
+a) Trigger Node  
+b) Response Node  
+c) Action Node  
+d) Conditional Node  
+
+Correct Answer: c  
+Explanation: Action Nodes perform operations within a workflow, such as calling APIs, sending emails, or updating databases. Sending a notification is an action, so it’s handled by an Action Node.
+
+---
+
+Q8. Which of the following statements correctly describes the role of a Trigger Node in n8n?
+
+a) It processes data transformations within a workflow  
+b) It executes only when manually invoked via UI  
+c) It starts a workflow in response to an event or schedule  
+d) It combines outputs from multiple branches  
+
+Correct Answer: c  
+Explanation: Trigger Nodes initiate workflows based on events like webhooks, scheduled timers, or incoming HTTP requests. They are essential for defining when and how a workflow begins.
+
+---
+
+Q9. Scenario: You are building a workflow where n8n must receive real-time data from a third-party payment gateway whenever a transaction occurs. Which approach should you use?
+
+a) Use an HTTP Request Node to periodically check for new transactions  
+b) Set up a Webhook Trigger Node to listen for incoming transaction events  
+c) Run a scheduled workflow every minute to poll the database  
+d) Manually trigger the workflow after each sale  
+
+Correct Answer: b  
+Explanation: Webhooks allow external systems to push data to n8n instantly when an event occurs. This is more efficient and real-time compared to polling via HTTP Request, making it ideal for payment notifications.
+
+---
+
+Q10. Scenario: Your application needs to fetch data from a public API (e.g., weather forecast) every hour and process it. Which combination of nodes would you use?
+
+a) Webhook Trigger Node + HTTP Request Node  
+b) Schedule Trigger Node + HTTP Request Node  
+c) Manual Trigger Node + Response Node  
+d) Conditional Node + Webhook Node  
+
+Correct Answer: b  
+Explanation: The Schedule Trigger Node starts the workflow at set intervals (e.g., hourly), and the HTTP Request Node is used to call the external API and retrieve data—making this the correct pairing for periodic data fetching.
+
+---
+
+Q11. Scenario: You want to create a custom integration in n8n for a legacy internal tool that isn’t supported by existing nodes. Which option allows you to build a tailored solution?
+
+a) Use only Native Nodes  
+b) Install a Community Node  
+c) Create a Custom Node using JavaScript or TypeScript  
+d) Replace the tool with a modern alternative  
+
+Correct Answer: c  
+Explanation: n8n allows developers to create Custom Nodes using JavaScript/TypeScript to interact with unsupported services or internal systems, enabling full flexibility for unique integrations.
+
+---
+
+Q12. Which of the following best describes a Native Node in n8n?
+
+a) A node developed by the community and shared publicly  
+b) A built-in node officially maintained by n8n for popular services (e.g., Slack, Google Sheets)  
+c) A node that requires Docker to function  
+d) A node that only works in the cloud version  
+
+Correct Answer: b  
+Explanation: Native Nodes are official nodes provided and maintained by the n8n team for widely used platforms and services, ensuring reliability, regular updates, and strong documentation.
+
+---
+
+Q13. Scenario: You need to integrate n8n with a niche CRM system that has no native connector. Fortunately, a developer in the n8n community has already created a node for it. Where should you look to add this functionality?
+
+a) n8n Marketplace under Community Nodes  
+b) n8n GitHub repository under core nodes  
+c) Built-in Trigger Nodes list  
+d) Docker Hub  
+
+Correct Answer: a  
+Explanation: Community Nodes are user-contributed integrations available via the n8n marketplace. These extend n8n’s capabilities to less common tools and APIs, allowing users to install them easily.
+
+---
+
+Q14. Which type of n8n node is automatically maintained by the n8n team and ensures compatibility with future updates?
+
+a) Custom Node  
+b) Community Node  
+c) Native Node  
+d) HTTP Node only  
+
+Correct Answer: c  
+Explanation: Native Nodes are officially supported by the n8n team, meaning they are tested, documented, and updated regularly to maintain compatibility and security.
+
+---
+
+Q15. Scenario: You are designing a workflow that sends promotional offers to users. However, you only want to send offers to customers who have made a purchase in the last 30 days. Which node should you use to control the flow based on this condition?
+
+a) HTTP Request Node  
+b) Data Handling Node  
+c) Conditional Node  
+d) Webhook Node  
+
+Correct Answer: c  
+Explanation: The Conditional Node evaluates data (e.g., last purchase date) and routes the workflow accordingly—enabling logic such as "if purchase within 30 days, then send offer."
+
+---
+
+Q16. Scenario: In an n8n workflow, you receive JSON data from an API containing nested fields. You need to extract specific values and rename them before storing in a database. Which node helps you transform this data?
+
+a) Trigger Node  
+b) Conditional Node  
+c) Data Handling Node  
+d) Response Node  
+
+Correct Answer: c  
+Explanation: Data Handling Nodes (like Set, Function, or JSON-to-JSON nodes) allow manipulation of data structure—extracting, renaming, formatting, or filtering fields—before passing them to the next step.
+
+---
+
+Q17. Which of the following operations can be performed using n8n’s Data Handling Nodes? (Select all that apply)
+
+a) Filter items based on a condition  
+b) Add or modify JSON fields  
+c) Delay execution for a specified time  
+d) Transform date formats  
+
+Correct Answer: a, b, d  
+Explanation: Data Handling Nodes in n8n enable filtering, field manipulation, and data transformation (including dates). Delays are handled by dedicated nodes like the Wait Node, not primarily by data handling nodes.
+
+---
+
+Q18. Scenario: You are receiving multiple records from an API, but some contain incomplete information. You want to remove entries where the email field is missing. Which node configuration would achieve this?
+
+a) Use a Conditional Node to check for email presence and route valid items  
+b) Use a Webhook Node to re-request missing data  
+c) Use a Response Node to reject bad data  
+d) Use a Schedule Trigger to retry later  
+
+Correct Answer: a  
+Explanation: A Conditional Node can evaluate whether the email field exists and split the workflow into branches—processing valid records and discarding or logging invalid ones.
+
+---
+
+Q19. Scenario: You’ve built a Telegram bot using n8n that answers FAQs. You want it to run 24/7 and respond instantly when users message it. How should you host and trigger the workflow?
+
+a) Run n8n locally and manually trigger the workflow each time  
+b) Host n8n using Docker with a Webhook Trigger Node listening for Telegram messages  
+c) Use a local installation with a Schedule Trigger every 5 minutes  
+d) Trigger the workflow via Python script once per day  
+
+Correct Answer: b  
+Explanation: Hosting n8n via Docker ensures stability and scalability. Using a Webhook Trigger Node allows the bot to receive Telegram messages in real time as they arrive, enabling instant responses.
+
+---
+
+Q20. Scenario: You want to trigger an n8n automation from a Python script running on a server. Which method allows external code to initiate a workflow?
+
+a) Call the n8n webhook URL from the Python script using `requests.post()`  
+b) Use the n8n desktop app to manually start the workflow  
+c) Wait for the scheduler to run the workflow  
+d) Edit the workflow JSON directly from Python  
+
+Correct Answer: a  
+Explanation: n8n workflows can be triggered externally via webhook URLs. A Python script can send an HTTP POST request to this URL, passing data and initiating the workflow programmatically—ideal for integration with existing codebases.
