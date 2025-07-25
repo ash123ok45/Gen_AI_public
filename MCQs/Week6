@@ -1,0 +1,228 @@
+Q1. Scenario: Your CTO asks for a clear test to decide whether a proposed system is an **AI agent** or just scripted automation. The system will read messages, decide whether to call external tools, and maintain a short memory of past turns. Which capability most strongly qualifies it as an AI agent?
+a) Running a daily cron job at a fixed time
+b) Deterministic execution of a single API call
+c) Using an LLM policy to choose actions (tools) and update memory across steps
+d) Storing logs to a file after execution
+Correct Answer: c
+Explanation: Modern AI agents centre an LLM “policy” that perceives context, plans, calls tools, and updates memory, unlike fixed scripts. ([LlamaIndex][1], [arXiv][2], [IBM][3])
+
+Q2. Scenario: You need to sketch an **AI agent architecture** for a helpdesk pilot. Which minimal set best captures the core building blocks?
+a) Trigger, cron scheduler, CSV exporter
+b) LLM + Tools (APIs/DB) + Memory + Orchestrator/Policy
+c) Database, cache, load balancer
+d) Shell script, webhook, Slack bot
+Correct Answer: b
+Explanation: Canonical agent stacks combine an LLM with tool-use, short/long‑term memory, and an orchestration policy to loop through perceive‑plan‑act. ([arXiv][2], [LlamaIndex][1], [arXiv][4])
+
+Q3. Scenario: A bank currently uses rules to route emails. They want a system that **learns** routing from examples and adapts. What is the correct characterisation?
+a) AI automation, because decisions are learned and probabilistic
+b) Plain automation, because it still routes emails
+c) Neither; only human review counts as AI
+d) Only “agentic AI” qualifies; simple learning does not
+Correct Answer: a
+Explanation: When a system learns decision policies from data and handles uncertainty, it moves from deterministic automation to AI‑driven automation. ([Financial Times][5], [IBM][3])
+
+Q4. Direct: Which **potential** is commonly cited for AI agents in enterprises?
+a) Guaranteed perfect accuracy without oversight
+b) Autonomous, auditable multi‑step task completion with human‑in‑the‑loop controls
+c) Elimination of all infrastructure components
+d) Replacing databases with prompts
+Correct Answer: b
+Explanation: Literature stresses autonomous task execution balanced by governance, auditability, and human oversight, not perfection or removal of infrastructure. ([The Economic Times][6], [Financial Times][5])
+
+Q5. Scenario: Your compliance officer insists on strong governance for agents. Which design satisfies this while keeping **potential** benefits?
+a) Fully hands‑off autonomy with no logs
+b) Planner–Executor with confidence thresholds, audit trails, and human approval for risky acts
+c) Ban tool use; allow text only
+d) Randomise plans to explore more
+Correct Answer: b
+Explanation: Agent designs should log plans/actions, gate risky steps, and allow human approval while retaining autonomous planning/execution. ([The Economic Times][6], [arXiv][2])
+
+Q6. Scenario: You are deploying a **conversational agent** for L1 support. It must greet, answer FAQs, fetch order status, and escalate when confidence is low. Which flow is most suitable?
+a) Single prompt; no state; answer everything
+b) LLM chat + short‑term memory; tool call to order API; IF branch on confidence to escalate
+c) Only regex rules and canned replies
+d) Two separate bots with no handover
+Correct Answer: b
+Explanation: Conversational agents typically maintain turn memory, call tools when needed, and branch/escalate based on model confidence. ([LlamaIndex][1], [arXiv][4])
+
+Q7. Scenario: You are designing **agent memory** for repeat callers. Which memory types are ideal to combine? (Select all that apply.)
+a) Short‑term dialogue buffer for recent turns
+b) Long‑term episodic store of key facts per user (vector/DB)
+c) Random token shuffler
+d) Reflective notes capturing mistakes and improvements
+Correct Answers: a, b, d
+Explanation: Agents commonly pair a rolling buffer with long‑term/episodic memory and reflective notes (self‑critique) to improve future behaviour. ([LlamaIndex][1], [arXiv][7], [arXiv][2])
+
+Q8. Scenario: You will do a **live n8n conversational agent** demo on Telegram. What minimum node set is sensible?
+a) Telegram Trigger → OpenAI (chat) → HTTP Request (order API) → IF → Telegram (Send Message)
+b) Webhook only
+c) Schedule Trigger every 1 minute
+d) Respond to Webhook only
+Correct Answer: a
+Explanation: Telegram Trigger receives messages; OpenAI handles chat; HTTP Request fetches data; IF branches; Telegram node sends replies. ([n8n Docs][8], [n8n Docs][9], [n8n Docs][10])
+
+Q9. Code-based — Scenario: You plan to persist chats in a DB. Given the JSON item produced per turn:
+
+```
+{
+  "user_id": "tg:98765",
+  "turn_id": "2025-07-25T10:15:30Z",
+  "role": "user",
+  "text": "Where is my order?",
+  "summary": "order status query",
+  "vector": "[...]",
+  "metadata": {"channel":"telegram","locale":"ta-IN"}
+}
+```
+
+Which purpose does **summary/vector** best serve in an agent?
+a) Only for display 
+b) Required for Telegram auth
+c) Forces tool selection
+d) Enables retrieval of past context and faster recall across sessions
+Correct Answer: d
+Explanation: Storing summaries and embeddings supports long‑term recall via retrieval across conversations; community patterns often use Postgres/Supabase. ([LlamaIndex][1], [n8n Community][11], [Reddit][12])
+
+Q10. Direct: Why is **persistent memory** important for conversational agents?
+a) To avoid using tools
+b) To maintain user context/preferences across sessions and reduce repetition
+c) To increase token usage unnecessarily
+d) To disable escalation
+Correct Answer: b
+Explanation: Persistent memory carries forward salient facts, improving personalisation and efficiency; it need not store every token. ([LlamaIndex][1], [arXiv][7])
+
+Q11. Code-based — Scenario: You define an OpenAI **function/tool** for weather:
+
+```
+{
+  "name": "get_weather",
+  "description": "Get weather for a city",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "city": {"type": "string"},
+      "unit": {"type": "string", "enum": ["C","F"]}
+    },
+    "required": ["city","unit"]
+  }
+}
+```
+
+The model replies with:
+
+```
+{"tool_call_id":"call_1","name":"get_weather",
+ "arguments":{"city":"Chennai","unit":"C"}}
+```
+
+What should your agent do next?
+a) Execute the `get_weather` function with the given arguments and return the result to the model/caller
+b) Ignore and print the JSON 
+c) Ask the user to retype
+d) Retry with a new function name
+Correct Answer: a
+Explanation: With function/tool calling, the model selects a tool and arguments; the host executes the tool and feeds results back for final response. ([OpenAI Platform][13], [OpenAI Platform][14])
+
+Q12. Scenario: Your agent has three tools: **get\_weather**, **lookup\_order**, **send\_email**. The user says, “What’s the temperature in Coimbatore now?” What is the correct behaviour?
+a) Call all tools and merge outputs
+b) Choose `get_weather` only; avoid unrelated tools
+c) Choose `send_email` to notify the user
+d) Refuse because order lookup is missing
+Correct Answer: b
+Explanation: Good tool‑use policies select the minimal appropriate tool; unnecessary calls add latency and risk. ([OpenAI Platform][13], [arXiv][4])
+
+Q13. Scenario: You’re enabling a **SQL agent** on a production database. Which safeguards are appropriate? (Select all that apply.)
+a) Use a read‑only user and restrict to allowed schemas/tables
+b) Log and review generated SQL; apply `LIMIT` for exploratory queries
+c) Grant `DROP TABLE` to allow correction
+d) Provide schema and sample rows to reduce hallucinated columns
+Correct Answers: a, b, d
+Explanation: LangChain/LlamaIndex recommend constrained credentials, schema guidance, logging, and defensive limits; destructive privileges are avoided. ([LangChain][15], [LlamaIndex][16])
+
+Q14. Scenario: A user asks a chatbot, “I asked about my salary last week—can you repeat what you said?” The bot recalls the previous conversation and responds accurately. Which feature of AI Agents makes this possible?
+
+a) Memory
+b) Tool calling
+c) Webhook integration
+d) Decision tree
+
+Correct Answer: a
+Explanation: Memory allows AI Agents to retain context across interactions, either short-term (within a session) or long-term (via vector databases), enabling coherent, context-aware conversations.
+
+
+Q15. Code-based — Scenario: Your SQL agent proposes:
+
+```
+SELECT customer_name, total_amount
+FROM orders
+WHERE order_date >= '2025-07-01'
+ORDER BY total_amount DESC
+LIMIT 20;
+```
+
+What additional **safety/quality** step is most advisable before executing in production?
+a) Remove LIMIT to get full data
+b) Run under read‑only credentials and log the query/plan for audit
+c) Add `DROP TABLE orders` afterwards to clean up
+d) Replace with free‑form text search
+Correct Answer: b
+Explanation: Use read‑only access and audit logs. LIMIT helps constrain cost; destructive privileges must not be granted to agents. ([LangChain][15], [LlamaIndex][16])
+
+Q16. Direct: What best describes **Agentic AI**?
+a) Any single API call returning a prediction
+b) A UI library for chat
+c) Only fine‑tuned small models
+d) Systems that plan and take goal‑directed actions with autonomy, using tools and feedback, often via multiple interacting agents
+
+Correct Answer: d
+Explanation: Agentic AI emphasises autonomous, goal‑seeking behaviour with planning, tool‑use, and feedback; often multi‑agent. ([HUMAN Security][20], [Financial Times][5], [arXiv][2])
+
+Q17. Scenario: A stakeholder asks the **difference between an AI agent and Agentic AI**. Which answer is most accurate?
+a) An AI agent is any LLM; Agentic AI is only robotics
+b) They are identical terms
+c) An AI agent is one instance using tools/memory; Agentic AI is the broader paradigm enabling autonomous planning, reflection, and possibly multi‑agent collaboration
+d) Agentic AI forbids tool use
+Correct Answer: c
+Explanation: LlamaIndex defines an agent as LLM + tools + memory; “agentic” refers to the wider class with autonomy, planning, reflection, and teams of agents. ([LlamaIndex][1], [arXiv][2])
+
+Q18. Scenario: You must present an **Agentic AI architecture** for a PoC. Which module list is most defensible?
+a) UI, UI, and more UI
+b) Planner → Tool Executor → Memory (short/long) → Critic/Reflector → Governance & Audit → Human‑in‑the‑Loop
+c) Only a vector DB
+d) GPU plus cache
+Correct Answer: b
+Explanation: Surveys highlight planner–executor loops, tool use, memory layers, self‑reflection/critique, and governance/oversight as core components. ([arXiv][2], [arXiv][21])
+
+Q19. Scenario: You are asked to **build Agentic RAG** for policy queries spanning multiple documents. Which set of behaviours is appropriate? (Select all that apply.)
+a) Plan multi‑hop sub‑questions before retrieval
+b) Tool calls for targeted retrieval, then critique/reflect to verify citations
+c) Blind generation without sources
+d) Iteratively re‑retrieve when confidence is low
+Correct Answers: a, b, d
+Explanation: Agentic RAG combines planning, tool‑driven retrieval, reflection/verification, and adaptive re‑querying to ground answers with citations. ([IBM][22], [arXiv][21], [WIRED][23])
+
+Q20. Scenario: Consider this pseudocode for your Agentic RAG:
+
+```
+plan = Planner.decompose(user_query)
+docs1 = Retriever.search(plan.step1)
+ans1  = LLM.answer(user_query, docs1)
+crit  = Critic.check(ans1, docs1)
+if crit.low_confidence: 
+    docs2 = Retriever.search(crit.gaps)
+    ans2  = LLM.answer(user_query, docs1+docs2)
+return Finalise.with_citations(ans2)
+```
+
+Which component primarily **reduces hallucination** while guiding another retrieval?
+
+a) Critic.check producing gaps for a second retrieval
+b) Planner.decompose
+c) Finalise.with_citations
+d) Returning ans1 immediately
+Correct Answer: a
+Explanation: The critic/reflector analyses gaps and triggers adaptive re‑retrieval, a key agentic pattern to ground outputs.
+
+---
+
