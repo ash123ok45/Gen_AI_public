@@ -1,0 +1,190 @@
+Q1. Scenario: You are a developer tasked with building a chatbot for internal HR queries without writing code. Your team wants to use a visual tool that allows drag-and-drop components for AI workflows. Which platform should you choose?
+
+a) TensorFlow
+b) Docker
+c) Flowise
+d) PostgreSQL
+Correct Answer: c
+Explanation: Flowise is a low-code/no-code platform that enables users to visually build AI workflows, especially LLM-powered chatbots and RAG systems, using a drag-and-drop interface—ideal for non-developers or rapid prototyping.
+
+Q2. Direct: Which core capabilities best describe Flowise for LLM apps?
+a) A vector DB only
+b) A no‑code/low‑code orchestration UI with chatflows/agentflows, document stores, and a public REST API (Prediction) to run flows
+c) A dedicated speech recognition engine
+d) A pure fine‑tuning framework
+Correct Answer: b
+Explanation: Flowise provides visual building blocks (nodes) for chatflows/agentflows, document stores for RAG, and a Prediction REST API to query flows programmatically. ([docs.flowiseai.com][3], [docs.flowiseai.com][4])
+
+Q3. Scenario: You are building your **first chatbot** that must answer FAQs and remember the last few turns. What is the minimal sensible node set?
+a) Start → OpenAI Chat → Memory → Response
+b) Start → Vector Store only
+c) Start → Webhook → Respond to Webhook (no LLM)
+d) Start → CSV Loader → Merge
+Correct Answer: a
+Explanation: A basic Flowise chatbot generally uses a chat model plus a short‑term memory to retain recent turns; RAG nodes can be added later. ([docs.flowiseai.com][5], [docs.flowiseai.com][3])
+
+Q4. Code-based — Scenario: You test chunking for a PDF. The Document Store preview shows `chunk_size=1500` and `chunk_overlap=750`. What is the expected impact of this configuration?
+
+```
+chunk_size: 1500
+chunk_overlap: 750
+```
+
+a) Larger chunks with substantial overlap improving context continuity, but higher token and storage cost
+b) Minimal overlap, cheapest but context may break
+c) Overlap disables retrieval
+d) Flowise ignores these values
+Correct Answer: a
+Explanation: Text splitters create chunks up to the set size and keep overlap to preserve context across chunks; higher overlap improves recall but costs more. ([docs.flowiseai.com][6], [docs.flowiseai.com][7])
+
+Q5. Scenario: You must pick an **embedding** model setting for semantic search. Which statement is correct for Flowise/LangChain embeddings?
+a) Embeddings are integers; smaller is always better
+b) Embeddings are floating‑point vectors; smaller distances indicate higher relatedness
+c) Embeddings must be one‑hot vectors
+d) Embeddings are only for images, not text
+Correct Answer: b
+Explanation: Embeddings represent text as high‑dimensional float vectors; similarity is computed by distance metrics to find related documents. ([docs.flowiseai.com][8])
+
+Q6. Direct: In Flowise, what is a **vector store** used for?
+a) Scheduling cron jobs
+b) Storing and searching embeddings for similarity retrieval in RAG
+c) Rendering UI components
+d) Managing OAuth tokens
+Correct Answer: b
+Explanation: Vector stores index high‑dimensional vectors to enable efficient similarity search for retrieval‑augmented generation. ([docs.flowiseai.com][9])
+
+Q7. Scenario (Multiple‑answer): You are assembling a **RAG chatbot** in Flowise. Which components typically appear in the end‑to‑end pipeline?
+a) Document/File Loader
+b) Text Splitter with chunk size/overlap
+c) Embedding model + Vector Store
+d) Retriever feeding context to a Chat Model
+Correct Answers: a, b, c, d
+Explanation: A standard RAG flow loads documents, splits them into chunks, embeds and indexes them in a vector store, then retrieves relevant chunks to ground the chat model. ([docs.flowiseai.com][10], [docs.flowiseai.com][7], [docs.flowiseai.com][9])
+
+Q8. Code-based — Scenario: You want to call a deployed Flowise chatbot from your website. Which endpoint and behaviour are correct?
+
+```
+POST /prediction/{flowId}
+{
+  "question": "What is the warranty period?",
+  "overrideConfig": { "temperature": 0.2 },
+  "stream": true
+}
+```
+
+a) Wrong endpoint; use `/chat`
+b) Correct: `/prediction/{id}` is the primary endpoint; supports body fields like `question` and streaming
+c) Only GET is allowed
+d) You must pass documents in every call
+Correct Answer: b
+Explanation: The Prediction API (`/prediction/{id}`) is Flowise’s primary interface to send a message and receive a flow’s response, including streaming. ([docs.flowiseai.com][11], [docs.flowiseai.com][4])
+
+Q9. Scenario: Your corpus gets updated weekly. You want a reliable **vector store ingest** routine with auditability. Which practice fits Flowise best?
+a) Re‑create embeddings on every user query
+b) Maintain a Document Store, upsert new docs via API, and re‑process when needed
+c) Delete the vector DB each time and rebuild from scratch
+d) Store raw PDFs only; avoid embeddings
+Correct Answer: b
+Explanation: Flowise Document Stores manage loaders, chunking, and upserts; the API supports upserting/re‑processing and even querying chunks for inspection. ([docs.flowiseai.com][12], [docs.flowiseai.com][13], [docs.flowiseai.com][6])
+
+Q10. Direct: In Flowise, **prompt chaining** most closely means:
+a) Fine‑tuning models
+b) Passing structured outputs from one prompt/model node to the next to refine or transform responses
+c) Disabling memory
+d) Exporting flows to JSON
+Correct Answer: b
+Explanation: Prompt chaining composes multiple prompt/model steps so that intermediate outputs (summaries, rewrites, sub‑queries) feed later steps. ([docs.flowiseai.com][3])
+
+Q11. Scenario: You require the model to return a strict JSON object for downstream code. In Flowise, what should you configure?
+a) No change; models always return perfect JSON
+b) Add an output‑parsing step or a model with JSON mode; validate and handle fallbacks
+c) Use plain text and parse with regex only
+d) Disable streaming
+Correct Answer: b
+Explanation: Use JSON‑structured outputs or parsers to enforce schema and add validation. Many teams pair this with observability to catch failures. ([docs.flowiseai.com][3], [docs.flowiseai.com][14])
+
+Q12. Scenario (Multiple‑answer): Your team is formalising **credentials, API keys, and custom tools** in Flowise.
+Which actions are advisable?
+a) Store provider keys in Flowise credentials, not hard‑coded in nodes
+b) Use headers like `x-api-key` when integrating LangSmith for tracing
+c) For custom HTTP tools, define method, URL, headers, and map inputs to body/params
+d) Commit keys to Git for convenience
+Correct Answers: a, b, c
+Explanation: Flowise supports credential objects; LangSmith expects an API key (e.g., `x-api-key`) for REST; custom tools (HTTP) should declare method, headers, and inputs. Never commit secrets to source control. ([docs.flowiseai.com][3], [LangSmith][15], [docs.flowiseai.com][14])
+
+Q13. Scenario: You enable **LangSmith** to understand agent behaviour. Which immediate benefits should you expect?
+a) Step‑by‑step traces of tool calls, prompts, and tokens; dashboards for errors/cost/latency
+b) Automatic fine‑tuning
+c) Source control for flows
+d) CDN caching
+Correct Answer: a
+Explanation: LangSmith provides LLM‑native observability—tracing runs, analysing latency/cost/errors, and debugging agent decisions. ([LangSmith][16], [LangChain][17])
+
+Q14. Scenario: You must keep **long‑term memory** for repeat users. The team proposes Redis. What is a sensible pattern?
+a) Use a Redis‑backed memory node (e.g., Upstash Redis) to persist conversation summaries/turns keyed by user ID
+b) Store memory only in local arrays
+c) Save full transcripts in cookies
+d) Avoid summaries; store raw audio only
+Correct Answer: a
+Explanation: Flowise tutorials show Redis/Upstash for persistent chat memory, typically storing condensed summaries/turns keyed per user. ([YouTube][18], [docs.flowiseai.com][5])
+
+Q15. Scenario: A stakeholder asks whether to use **multi‑agent** or **sequential agents** in Flowise. The task has distinct specialist steps (classify → retrieve → draft → review) that must run in order with clear hand‑offs. What do you choose?
+a) Multi‑agent hierarchical graph
+b) Randomised exploration
+c)Sequential agents pipeline
+d) Single prompt only
+Correct Answer: c
+Explanation: When steps are ordered and dependent, sequential agents provide deterministic control. Multi‑agent graphs suit broader task decomposition and collaboration. ([docs.flowiseai.com][19], [YouTube][20])
+
+Q16. Scenario: You want ultra‑low latency responses in Flowise using **GROQ**. What configuration is appropriate?
+a) Use the **GroqChat** model node with your Groq API key; wire it into your chatflow/agentflow
+b) GROQ works only via OpenAI node
+c) GROQ requires on‑prem GPUs
+d) GROQ cannot be used for RAG
+Correct Answer: a
+Explanation: Flowise includes a GroqChat node (wrapper over Groq’s LPU inference). Provide the Groq API key and connect it like any chat model. ([docs.flowiseai.com][21], [YouTube][22])
+
+Q17. Direct: Your team runs an internal **Event Agent Showdown** to compare flows. Which metrics are most standard to compare?
+a) Response length only
+b) Accuracy/grounding, latency, cost/tokens, tool success rate, and failure/timeout rates
+c) Number of nodes in the canvas
+d) Size of PDFs
+Correct Answer: b
+Explanation: Evaluations should combine quality and operations: correctness/grounding, latency, cost, and reliability of tool calls. LangSmith/analytics dashboards help track these. ([docs.flowiseai.com][14], [LangChain][17])
+
+Q18. Code-based — Scenario: You are prototyping AutoGen. Consider this minimal two‑agent chat (simplified):
+
+```python
+from autogen import AssistantAgent, UserProxyAgent
+
+assistant = AssistantAgent("assistant")
+user = UserProxyAgent("user", human_input_mode="NEVER")
+
+user.initiate_chat(assistant, message="Summarise benefits of vector stores in Flowise.")
+```
+
+What should you expect next?
+a) Nothing happens; AutoGen needs three agents
+b) The assistant produces a response; you can extend with tools/memory for RAG
+c) AutoGen always requires human input at each turn
+d) AutoGen cannot discuss Flowise concepts
+Correct Answer: b
+Explanation: AutoGen’s agents converse autonomously; you can add tools, memory, and multi‑agent patterns as needed. ([Microsoft][23], [Microsoft][24], [Microsoft][25])
+
+Q19. Scenario (Multiple‑answer): You are teaching **Agentic Architect & Patterns** in AutoGen. Which patterns are commonly referenced?
+a) Planner–Executor with a Critic/Reflector
+b) Mixture of Agents (orchestrator + layered workers)
+c) Parallel agent execution for independent subtasks
+d) Disallow tool use in all cases
+Correct Answers: a, b, c
+Explanation: AutoGen documents multi‑agent conversation with planner/executor, critic/reflection, Mixture of Agents, and parallelisation for throughput. Tool use is a first‑class capability. ([Microsoft][26], [Microsoft][25], [docs.arize.com][27])
+
+Q20. Scenario: You are designing **Memory & State Management** for an AutoGen multi‑agent app that also serves a Flowise RAG backend. Which approach is most defensible?
+a) Keep all state in prompts
+b) Use a DB/vector DB for long‑term facts, short‑term buffers per conversation, and log traces to LangSmith/analytics for audit
+c) Store raw transcripts in local variables only
+d) Share a single global variable across agents
+Correct Answer: b
+Explanation: Robust agent systems separate short‑term buffers from long‑term stores (DB/vector DB) and add observability for audit and debugging. ([Microsoft][23], [docs.flowiseai.com][14])
+
+
